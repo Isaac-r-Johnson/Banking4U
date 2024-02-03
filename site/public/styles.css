@@ -378,6 +378,13 @@ canvas {
 }
 .stats-graph{
     padding: 10px;
+    width: 100%;
+}
+.bar-graph{
+    width: 100%;
+}
+.bar-graph canvas{
+    width: 100%;
 }
 
 

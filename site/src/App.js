@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import {useState, useEffect,} from 'react';
 import bellIcon from './images/bell-icon.png';
@@ -10,8 +11,6 @@ const App = (props) => {
     const incomePoints = [0, 2460, 10000, 12000, 15000, 14234, 15300, 16000, 18000, 15342, 20000, 25800];
     const expensePoints = [0, 1450, 2335, 1540, 1204, 1000, 2000, 3000, 4234, 4000, 3900, 3366];
     const years = ['2013', '2014','2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'];
-
-
     
 
     return (
@@ -114,7 +113,9 @@ const App = (props) => {
 
                     </div>
                 </div>
-                <div className="quick-trans"></div>
+                <div className="quick-trans">
+                    
+                </div>
             </div>
 
             <div className="Rtrans"></div>

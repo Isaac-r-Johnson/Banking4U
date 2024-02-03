@@ -5,10 +5,16 @@ import { Chart } from 'chart.js/auto';
 
 const BarGraph = ({ income, expense, years }) => {
   const chartRef = useRef(null);
+  const chartInstance = useRef(null);
 
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');
-    new Chart(ctx, {
+
+    if (chartInstance.current){
+      chartInstance.current.destroy();
+    }
+
+    chartInstance.current = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: years,
@@ -18,14 +24,14 @@ const BarGraph = ({ income, expense, years }) => {
             data: income,
             backgroundColor: '#00A76F',
             borderColor: '#00A76F',
-            borderWidth: 1,
+            borderWidth: 0,
           },
           {
             label: 'Expense',
             data: expense,
             backgroundColor: '#FFAB00',
             borderColor: '#FFAB00',
-            borderWidth: 1,
+            borderWidth: 0,
           }
         ],
       },
@@ -35,13 +41,21 @@ const BarGraph = ({ income, expense, years }) => {
             beginAtZero: true,
           },
         },
+        responsive: true,
+        maintainAspectRatio: false, 
       },
     });
+
+    return () => {
+      if (chartInstance.current){
+        chartInstance.current.destroy();
+      }
+    }
   }, [income, expense, years]);
 
   return (
-    <div style={{ width: '100%', margin: '20px 0' }}>
-      <canvas ref={chartRef} style={{ width: '100%'}}/>
+    <div className='bar-graph'>
+      <canvas ref={chartRef}/>
     </div>
   );
 };
