@@ -4,10 +4,14 @@ import bellIcon from './images/bell-icon.png';
 import gearIcon from './images/gear-icon.png';
 import tempProfile from './images/profile.jpg';
 import Graph from "./components/Graph";
+import BarGraph from './components/BarGraph';
 
 const App = (props) => {
     const incomePoints = [0, 2460, 10000, 12000, 15000, 14234, 15300, 16000, 18000, 15342, 20000, 25800];
     const expensePoints = [0, 1450, 2335, 1540, 1204, 1000, 2000, 3000, 4234, 4000, 3900, 3366];
+    const years = ['2013', '2014','2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'];
+
+
     
 
     return (
@@ -93,7 +97,25 @@ const App = (props) => {
 
             </div>
 
-            <div className="stats-Qtrans"></div>
+            <div className="stats-Qtrans">
+                <div className="stats">
+                    <div className="stats-title">
+                        <div>
+                            <h4>Balance Statistics</h4>
+                            <h6>(+100% Income | +100% Expense) than last year</h6>
+                        </div>
+                        <div className="stats-key">
+                            <h6>Year</h6>
+                        </div>
+                    </div>
+                    <div className="stats-graph">
+
+                        <BarGraph income={incomePoints} expense={expensePoints} years={years}/>
+
+                    </div>
+                </div>
+                <div className="quick-trans"></div>
+            </div>
 
             <div className="Rtrans"></div>
 

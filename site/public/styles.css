@@ -1,3 +1,9 @@
+/* System Edits */
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
 /* Animations */
 @keyframes rotating-gear{
     from {
@@ -5,15 +11,6 @@
     }
     to {
         transform: rotate(360deg);
-    }
-}
-
-@keyframes hover-shadow{
-    from {
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    }
-    to {
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 }
 
@@ -94,7 +91,7 @@
     height: 34px;
 }
 
-/* Card Data */
+/* Row 1 */
 .card-data{
     width: 100vw;
     height: 280px;
@@ -324,4 +321,75 @@ canvas {
     color: white;
     font-size: 1.1em;
     font-weight: 500;
+}
+
+/* Row 2 */
+.stats-Qtrans{
+    display: grid;
+    height: 400px;
+    margin: 20px 20px 20px 20px;
+    grid-template-columns: 1.7fr 1fr;
+    column-gap: 20px;
+}
+
+/* Stats */
+.stats{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 4%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: box-shadow .5s ease;
+}
+.stats:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.stats-title{
+    padding: 30px 30px 0px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.stats-title h4{
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1.4em;
+    font-weight: 600;
+    width: fit-content;
+}
+.stats-title h6{
+    font-family: 'Public Sans', sans-serif;
+    font-size: .8em;
+    font-weight: 500;
+    width: fit-content;
+    color: #637381;
+}
+.stats-key{
+    background-color: #F4F6F8;
+    height: 30px;
+    padding: 14px 14px 7px 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    
+}
+.stats-key > h6{
+    color: black!important;
+}
+.stats-graph{
+    padding: 10px;
+}
+
+
+/* Quick Transfer */
+.quick-trans{
+    width: 100%;
+    height: 100%;
+    background-color: #F4F6F8;
+    border-radius: 4%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: box-shadow .5s ease;
+}
+.quick-trans:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
