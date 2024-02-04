@@ -4,13 +4,65 @@ import {useState, useEffect,} from 'react';
 import bellIcon from './images/bell-icon.png';
 import gearIcon from './images/gear-icon.png';
 import tempProfile from './images/profile.jpg';
+import tempProfile2 from './images/temp-pro-2.jpg';
+import tempProfile3 from './images/temp-pro-3.jpg';
+import tempProfile4 from './images/temp-pro-4.jpg';
+import tempProfile5 from './images/temp-pro-5.jpg';
+import visaImage from './images/visa.png';
 import Graph from "./components/Graph";
 import BarGraph from './components/BarGraph';
+import Slider from "./components/Slider";
+import Tooltip from "./components/Tooltip";
 
 const App = (props) => {
+    const [sliderValue, setSliderValue] = useState(0);
+    const [allowTransfer, setAllowTransfer] = useState("");
+    const [allowTransferText, setAllowTransferText] = useState("");
+    const account = "50,432.49";
     const incomePoints = [0, 2460, 10000, 12000, 15000, 14234, 15300, 16000, 18000, 15342, 20000, 25800];
     const expensePoints = [0, 1450, 2335, 1540, 1204, 1000, 2000, 3000, 4234, 4000, 3900, 3366];
     const years = ['2013', '2014','2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'];
+    const users = [
+        {
+            image: tempProfile,
+            name: 'Isaac Johnson'
+        },
+        {
+            image: tempProfile2,
+            name: 'Jeff Goldbloom'
+        },
+        {
+            image: tempProfile3,
+            name: 'Isaac Johnson'
+        },
+        {
+            image: tempProfile4,
+            name: 'Jeff Goldbloom'
+        },
+        {
+            image: tempProfile5,
+            name: 'Isaac Johnson'
+        },
+    ]
+
+    useEffect(() => {
+        if (sliderValue > 0){
+            setAllowTransfer("allow-transfer");
+            setAllowTransferText("allow-transfer-text")
+        } 
+        else{
+            setAllowTransfer("");
+            setAllowTransferText("");
+        }
+    }, [sliderValue]);
+
+    const handleSliderChange = (event) => {
+      setSliderValue(event.target.value);
+    };
+
+    const calculateProgressWidth = () => {
+        return `${sliderValue/10-1}%`;
+    };
     
 
     return (
@@ -78,16 +130,21 @@ const App = (props) => {
                     <div className="card-info">
                         <div className="info">
                             <h6>Current Balance</h6>
-                            <h2>$50,432.49</h2>
+                            <h2>${account}</h2>
                             <h5 className="card-number">**** **** **** 1021</h5>
                             <div className="card-bottom">
-                                <div>
-                                    <h6>Card Holder</h6>
-                                    <h5>Isaac Johnson</h5>
+                                <div className="text-container">
+                                    <div>
+                                        <h6>Card Holder</h6>
+                                        <h5>Isaac Johnson</h5>
+                                    </div>
+                                    <div>
+                                        <h6>Valid Until</h6>
+                                        <h5>10/21</h5>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h6>Valid Until</h6>
-                                    <h5>10/21</h5>
+                                <div className="image-container">
+                                    <img src={visaImage} alt='Visa'/>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +158,7 @@ const App = (props) => {
                     <div className="stats-title">
                         <div>
                             <h4>Balance Statistics</h4>
-                            <h6>(+100% Income | +100% Expense) than last year</h6>
+                            <h6>(+29% Income | -13.7% Expense) than last year</h6>
                         </div>
                         <div className="stats-key">
                             <h6>Year</h6>
@@ -114,7 +171,35 @@ const App = (props) => {
                     </div>
                 </div>
                 <div className="quick-trans">
-                    
+                    <h4>Quick Transfer</h4>
+                    <Slider data={users}/>
+                    <h6>Insert Amount</h6>
+                    <div className="trans-amount">
+                        <div>
+                            <h5>$</h5>
+                            <h2>{sliderValue}</h2>
+                        </div>
+                    </div>
+                    <div className="slider-container">
+                        <div className="progress" style={{ width: calculateProgressWidth() }}></div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="1000"
+                          step="50"
+                          value={sliderValue}
+                          onChange={handleSliderChange}
+                          className="d-slider"/>
+                    </div>
+                    <div className="balance">
+                        <h5>Your Balance</h5>
+                        <h5>{account}</h5>
+                    </div>
+                    <div className="btn-container">
+                        <div className={"transfer-btn " + allowTransfer}>
+                            <h5 className={allowTransferText}>Transfer Now</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
 
